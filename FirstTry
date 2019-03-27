@@ -1,0 +1,158 @@
+# First small project in Selenium Python pratice
+# The goal of tests was to check "Contact Us" form on http://www.automationpractice.com
+# Still needs some tweaks and fixes to make it work as it should 
+
+import unittest
+from selenium import webdriver
+from selenium.webdriver.support.ui import Select
+
+
+class AutomationPracticeCom(unittest.TestCase):
+
+    def setUp(self):
+        self.driver = webdriver.Firefox()
+
+    def test_email_special_symbols(self):
+        driver = self.driver
+        driver.get("http://www.automationpractice.com")
+        self.assertIn("My Store", driver.title)
+        contact = driver.find_element_by_id("contact-link")
+        contact.click()
+        select_list = Select(driver.find_element_by_id("id_contact"))
+        select_list.select_by_index(1)
+        email_box = driver.find_element_by_id("email")
+        email_box.clear()
+        email_box.send_keys("!@#$$%#^#$@")
+        order_box = driver.find_element_by_id("id_order")
+        order_box.clear()
+        order_box.send_keys('001')
+        message_box = driver.find_element_by_id("message")
+        message_box.clear()
+        message_box.send_keys("I'm unhappy")
+        submit_button = driver.find_element_by_id("submitMessage")
+        submit_button.click()
+
+    def tearDown(self):
+        self.driver.close()
+
+
+class AutomationPracticeCom2(unittest.TestCase):
+
+    def setUp(self):
+        self.driver = webdriver.Firefox()
+
+    def test_email_chinese_characters(self):
+        driver = self.driver
+        driver.get("http://www.automationpractice.com")
+        self.assertIn("My Store", driver.title)
+        contact = driver.find_element_by_id("contact-link")
+        contact.click()
+        select_list = Select(driver.find_element_by_id("id_contact"))
+        select_list.select_by_index(1)
+        email_box = driver.find_element_by_id("email")
+        email_box.clear()
+        email_box.send_keys("你好")
+        order_box = driver.find_element_by_id("id_order")
+        order_box.clear()
+        order_box.send_keys('001')
+        message_box = driver.find_element_by_id("message")
+        message_box.clear()
+        message_box.send_keys("I'm unhappy")
+        submit_button = driver.find_element_by_id("submitMessage")
+        submit_button.click()
+
+    def tearDown(self):
+        self.driver.close()
+
+
+class AutomationPracticeCom3(unittest.TestCase):
+
+    def setUp(self):
+        self.driver = webdriver.Firefox()
+
+    def test_email_blank(self):
+        driver = self.driver
+        driver.get("http://www.automationpractice.com")
+        self.assertIn("My Store", driver.title)
+        contact = driver.find_element_by_id("contact-link")
+        contact.click()
+        select_list = Select(driver.find_element_by_id("id_contact"))
+        select_list.select_by_index(1)
+        email_box = driver.find_element_by_id("email")
+        email_box.clear()
+        email_box.send_keys("")
+        order_box = driver.find_element_by_id("id_order")
+        order_box.clear()
+        order_box.send_keys('001')
+        message_box = driver.find_element_by_id("message")
+        message_box.clear()
+        message_box.send_keys("I'm unhappy")
+        submit_button = driver.find_element_by_id("submitMessage")
+        submit_button.click()
+
+    def tearDown(self):
+        self.driver.close()
+
+
+class AutomationPracticeCom4(unittest.TestCase):
+
+    def setUp(self):
+        self.driver = webdriver.Firefox()
+
+    def test_email_spaces(self):
+        driver = self.driver
+        driver.get("http://www.automationpractice.com")
+        self.assertIn("My Store", driver.title)
+        contact = driver.find_element_by_id("contact-link")
+        contact.click()
+        select_list = Select(driver.find_element_by_id("id_contact"))
+        select_list.select_by_index(1)
+        email_box = driver.find_element_by_id("email")
+        email_box.clear()
+        email_box.send_keys(" something @ mail . com    ")
+        order_box = driver.find_element_by_id("id_order")
+        order_box.clear()
+        order_box.send_keys('001')
+        message_box = driver.find_element_by_id("message")
+        message_box.clear()
+        message_box.send_keys("I'm unhappy")
+        submit_button = driver.find_element_by_id("submitMessage")
+        submit_button.click()
+
+    def tearDown(self):
+        self.driver.close()
+
+
+class AutomationPracticeCom5(unittest.TestCase):
+
+    def setUp(self):
+        self.driver = webdriver.Firefox()
+
+    def test_email_only_one_char(self):
+        driver = self.driver
+        driver.get("http://www.automationpractice.com")
+        self.assertIn("My Store", driver.title)
+        contact = driver.find_element_by_id("contact-link")
+        contact.click()
+        select_list = Select(driver.find_element_by_id("id_contact"))
+        select_list.select_by_index(1)
+        email_box = driver.find_element_by_id("email")
+        email_box.clear()
+        email_box.send_keys("a")
+        order_box = driver.find_element_by_id("id_order")
+        order_box.clear()
+        order_box.send_keys('001')
+        message_box = driver.find_element_by_id("message")
+        message_box.clear()
+        message_box.send_keys("I'm unhappy")
+        submit_button = driver.find_element_by_id("submitMessage")
+        submit_button.click()
+
+    def tearDown(self):
+        self.driver.close()
+
+
+if __name__ == "__main__":
+    unittest.main()
+
+    unittest.main()
